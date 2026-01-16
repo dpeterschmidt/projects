@@ -43,6 +43,36 @@
             </div>
         </div>
 
+        <div class="notifications-section">
+            <h2>Get Notifications</h2>
+
+            <div class="notification-option">
+                <div class="notification-header">
+                    <span class="notification-icon">🔔</span>
+                    <h3>Browser Notifications</h3>
+                </div>
+                <p class="notification-description">Get instant notifications in your browser when the timer starts, stops, or completes.</p>
+                <button id="enableBrowserNotifications" class="btn btn-notification">Enable Browser Notifications</button>
+                <p id="browserNotificationStatus" class="notification-status"></p>
+            </div>
+
+            <div class="notification-option">
+                <div class="notification-header">
+                    <span class="notification-icon">📱</span>
+                    <h3>Telegram Notifications</h3>
+                </div>
+                <p class="notification-description">Receive updates on Telegram, even when you're not on this page.</p>
+                <div class="telegram-instructions">
+                    <ol>
+                        <li>Open Telegram and search for: <strong id="botUsername">Loading...</strong></li>
+                        <li>Send the command: <code>/start</code></li>
+                        <li>You'll receive timer notifications automatically!</li>
+                    </ol>
+                    <p class="telegram-note">To unsubscribe, send <code>/stop</code> to the bot.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="info">
             <p>This timer is synchronized across all visitors in real-time.</p>
             <p>Only one timer can run at a time.</p>

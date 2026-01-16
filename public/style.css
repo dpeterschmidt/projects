@@ -215,6 +215,137 @@ h1 {
     box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
 }
 
+.notifications-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.notifications-section h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notification-option {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.notification-option:last-child {
+    margin-bottom: 0;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+.notification-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.notification-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.btn-notification {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.btn-notification:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn-notification:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+.notification-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.notification-status.success {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.notification-status.error {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.telegram-instructions {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.telegram-instructions ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.telegram-instructions li {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.telegram-instructions strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.telegram-instructions code {
+    background: #e8f4f8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.telegram-note {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
+}
+
 .info {
     padding-top: 20px;
     border-top: 2px solid #f0f0f0;
