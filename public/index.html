@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Live Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Shared Live Timer</h1>
+        <p class="subtitle">One timer for everyone</p>
+
+        <div class="timer-display" id="timerDisplay">
+            <span class="time">00:00:00</span>
+        </div>
+
+        <div class="status" id="status">
+            <span class="status-indicator"></span>
+            <span class="status-text">Ready to start</span>
+        </div>
+
+        <div class="controls" id="controls">
+            <div class="input-group">
+                <label for="duration">Duration (seconds):</label>
+                <input type="number" id="duration" min="1" max="86400" value="60" placeholder="Enter seconds">
+            </div>
+
+            <div class="button-group">
+                <button id="startBtn" class="btn btn-primary">Start Timer</button>
+                <button id="stopBtn" class="btn btn-secondary" disabled>Stop Timer</button>
+                <button id="resetBtn" class="btn btn-tertiary">Reset</button>
+            </div>
+        </div>
+
+        <div class="info">
+            <p>This timer is synchronized across all visitors in real-time.</p>
+            <p>Only one timer can run at a time.</p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
