@@ -121,6 +121,47 @@ h1 {
     border-color: #667eea;
 }
 
+.presets {
+    margin-bottom: 20px;
+}
+
+.presets label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.preset-btn {
+    padding: 10px 12px;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.preset-btn:hover:not(:disabled) {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.preset-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .button-group {
     display: flex;
     gap: 10px;
@@ -196,6 +237,10 @@ h1 {
 
     .time {
         font-size: 2.5rem;
+    }
+
+    .preset-buttons {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .button-group {

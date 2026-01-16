@@ -26,6 +26,16 @@
                 <input type="number" id="duration" min="1" max="86400" value="60" placeholder="Enter seconds">
             </div>
 
+            <div class="presets">
+                <label>Quick Presets:</label>
+                <div class="preset-buttons">
+                    <button class="preset-btn" data-seconds="300">5 min</button>
+                    <button class="preset-btn" data-seconds="600">10 min</button>
+                    <button class="preset-btn" data-seconds="1200">20 min</button>
+                    <button class="preset-btn" data-seconds="1800">30 min</button>
+                </div>
+            </div>
+
             <div class="button-group">
                 <button id="startBtn" class="btn btn-primary">Start Timer</button>
                 <button id="stopBtn" class="btn btn-secondary" disabled>Stop Timer</button>

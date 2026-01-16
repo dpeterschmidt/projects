@@ -9,9 +9,19 @@ const durationInput = document.getElementById('duration');
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
 const resetBtn = document.getElementById('resetBtn');
+const presetBtns = document.querySelectorAll('.preset-btn');
 
 let localInterval = null;
 let currentEndTime = null;
+
+// Preset button event listeners
+presetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const seconds = parseInt(btn.getAttribute('data-seconds'));
+        durationInput.value = seconds;
+        socket.emit('startTimer', seconds);
+    });
+});
 
 // Button event listeners
 startBtn.addEventListener('click', () => {
@@ -55,6 +65,7 @@ function updateUI(state) {
         startBtn.disabled = true;
         stopBtn.disabled = false;
         durationInput.disabled = true;
+        presetBtns.forEach(btn => btn.disabled = true);
     } else {
         stopLocalTimer();
         updateDisplay(0);
@@ -64,6 +75,7 @@ function updateUI(state) {
         startBtn.disabled = false;
         stopBtn.disabled = true;
         durationInput.disabled = false;
+        presetBtns.forEach(btn => btn.disabled = false);
     }
 }
 
