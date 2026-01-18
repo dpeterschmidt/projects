@@ -158,3 +158,27 @@ socket.on('disconnect', () => {
 socket.on('reconnect', () => {
     console.log('Reconnected to server');
 });
+
+// ========== Discord Webhook Status ==========
+
+const discordStatusElement = document.getElementById('discordStatus');
+
+// Check Discord webhook configuration status
+fetch('/api/discord-status')
+    .then(response => response.json())
+    .then(data => {
+        if (data.configured) {
+            discordStatusElement.textContent = 'Configured ✓';
+            discordStatusElement.classList.add('configured');
+            discordStatusElement.classList.remove('not-configured');
+        } else {
+            discordStatusElement.textContent = 'Not configured';
+            discordStatusElement.classList.add('not-configured');
+            discordStatusElement.classList.remove('configured');
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching Discord status:', error);
+        discordStatusElement.textContent = 'Error checking status';
+        discordStatusElement.classList.add('not-configured');
+    });

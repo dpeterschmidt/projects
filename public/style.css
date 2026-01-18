@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: 'Patrick Hand', 'Caveat', cursive;
-    background: linear-gradient(135deg, #3d2817 0%, #5a3825 50%, #2d4a2e 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,82 +15,72 @@ body {
 }
 
 .container {
-    background: #f5ebe0;
-    border-radius: 30px;
-    padding: 45px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-    max-width: 520px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
     width: 100%;
     text-align: center;
-    border: 3px solid #8b5a3c;
 }
 
 h1 {
-    font-family: 'Caveat', cursive;
-    color: #5d2e1f;
-    font-size: 3.2rem;
-    margin-bottom: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-family: 'Patrick Hand', cursive;
-    color: #7a4a2e;
-    font-size: 1.3rem;
+    color: #666;
+    font-size: 1rem;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .timer-display {
-    background: linear-gradient(135deg, #6b3410 0%, #8b4513 100%);
-    border-radius: 25px;
-    padding: 45px 20px;
-    margin-bottom: 25px;
-    border: 3px solid #5a2d0f;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
 }
 
 .time {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: #f5ebe0;
-    font-family: 'Caveat', cursive;
-    letter-spacing: 4px;
+    color: white;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
 }
 
 .status {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 30px;
-    padding: 18px;
-    background: #d4a574;
-    border-radius: 20px;
-    border: 2px solid #b8956a;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
 }
 
 .status-indicator {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: #8b7355;
+    background: #95a5a6;
     animation: pulse 2s infinite;
 }
 
 .status.running .status-indicator {
-    background: #4a7c4e;
+    background: #2ecc71;
 }
 
 .status.stopped .status-indicator {
-    background: #9e4a3d;
+    background: #e74c3c;
 }
 
 .status-text {
-    color: #3d2817;
-    font-weight: 600;
-    font-size: 1.1rem;
+    color: #555;
+    font-weight: 500;
 }
 
 @keyframes pulse {
@@ -107,75 +97,64 @@ h1 {
 }
 
 .input-group {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 10px;
-    color: #5d2e1f;
-    font-weight: 600;
-    font-size: 1.15rem;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
 }
 
 .input-group input {
     width: 100%;
-    padding: 14px;
-    border: 3px solid #b8956a;
-    border-radius: 18px;
-    font-size: 1.1rem;
-    font-family: 'Patrick Hand', cursive;
-    background: #faf6f1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
     transition: border-color 0.3s;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #8b5a3c;
-    background: white;
+    border-color: #667eea;
 }
 
 .presets {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .presets label {
     display: block;
-    margin-bottom: 15px;
-    color: #5d2e1f;
-    font-weight: 600;
-    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
 }
 
 .preset-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
 }
 
 .preset-btn {
-    width: 65px;
-    height: 65px;
-    border: 3px solid #8b5a3c;
-    background: #d4a574;
-    color: #3d2817;
-    border-radius: 50%;
-    font-size: 1.4rem;
-    font-weight: 700;
-    font-family: 'Caveat', cursive;
+    padding: 10px 12px;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .preset-btn:hover:not(:disabled) {
-    background: #8b5a3c;
-    color: #f5ebe0;
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
 }
 
 .preset-btn:disabled {
@@ -185,22 +164,20 @@ h1 {
 
 .button-group {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .btn {
     flex: 1;
-    min-width: 110px;
-    padding: 14px 22px;
-    border: 3px solid;
-    border-radius: 20px;
-    font-size: 1.15rem;
-    font-weight: 700;
-    font-family: 'Patrick Hand', cursive;
+    min-width: 100px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn:disabled {
@@ -209,80 +186,177 @@ h1 {
 }
 
 .btn-primary {
-    background: #4a7c4e;
-    color: #f5ebe0;
-    border-color: #3a5f3d;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #3a5f3d;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(74, 124, 78, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
 .btn-secondary {
-    background: #9e4a3d;
-    color: #f5ebe0;
-    border-color: #7d3b30;
+    background: #e74c3c;
+    color: white;
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background: #7d3b30;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(158, 74, 61, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
 }
 
 .btn-tertiary {
-    background: #8b7355;
-    color: #f5ebe0;
-    border-color: #6b5643;
+    background: #95a5a6;
+    color: white;
 }
 
 .btn-tertiary:hover:not(:disabled) {
-    background: #6b5643;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(139, 115, 85, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+}
+
+.notifications-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.notifications-section h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notification-option {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.notification-option:last-child {
+    margin-bottom: 0;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+.notification-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.notification-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.discord-instructions {
+    background: #f0f3ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #5865F2;
+}
+
+.discord-instructions p {
+    margin: 10px 0;
+}
+
+.discord-instructions ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.discord-instructions li {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.discord-instructions strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.discord-instructions code {
+    background: #e8ecf8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.discord-status {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.discord-status #discordStatus {
+    font-weight: 600;
+}
+
+.discord-status #discordStatus.configured {
+    color: #2ecc71;
+}
+
+.discord-status #discordStatus.not-configured {
+    color: #e74c3c;
+}
+
+.discord-note {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
 }
 
 .info {
-    padding-top: 25px;
-    border-top: 3px solid #b8956a;
-    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
 }
 
 .info p {
-    color: #7a4a2e;
-    font-size: 1rem;
-    margin: 8px 0;
-    font-weight: 500;
+    color: #888;
+    font-size: 0.9rem;
+    margin: 5px 0;
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 30px 20px;
-        border-radius: 25px;
     }
 
     h1 {
-        font-size: 2.5rem;
-    }
-
-    .subtitle {
-        font-size: 1.1rem;
+        font-size: 2rem;
     }
 
     .time {
-        font-size: 3rem;
-    }
-
-    .preset-btn {
-        width: 55px;
-        height: 55px;
-        font-size: 1.2rem;
+        font-size: 2.5rem;
     }
 
     .preset-buttons {
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .button-group {
