@@ -8,7 +8,6 @@ A simple real-time timer website where anyone can set a timer that all visitors 
 - **Single shared timer** - Only one timer can run at a time, shared across all visitors
 - **Quick presets** - One-click timer presets for 5, 10, 20, and 30 minutes
 - **Start/Stop/Reset controls** - Anyone can control the timer
-- **Browser push notifications** - Get notified in your browser when the timer starts, stops, or completes
 - **Discord notifications** - Receive timer updates in your Discord server via webhooks
 - **Responsive design** - Works on desktop and mobile devices
 - **Visual feedback** - Clear status indicators and animations
@@ -16,7 +15,7 @@ A simple real-time timer website where anyone can set a timer that all visitors 
 ## Technology Stack
 
 - **Backend**: Node.js, Express, Socket.io, Discord Webhooks
-- **Frontend**: HTML5, CSS3, JavaScript, Browser Notifications API
+- **Frontend**: HTML5, CSS3, JavaScript
 - **Real-time Communication**: WebSocket (Socket.io)
 
 ## Installation
@@ -69,13 +68,6 @@ http://localhost:3000
 4. Use "Stop Timer" to pause or "Reset" to clear the timer
 5. When the timer completes, all visitors will see a notification
 
-### Browser Notifications
-
-1. Click "Enable Browser Notifications" in the notifications section
-2. Grant permission when your browser prompts you
-3. You'll receive notifications when the timer starts, stops, or completes
-4. Notifications work even when the tab is in the background
-
 ### Discord Notifications
 
 1. Have a server admin follow the setup instructions above to configure the Discord webhook
@@ -93,7 +85,6 @@ http://localhost:3000
 - Server periodically checks for timer completion and notifies all clients
 
 ### Notifications
-- **Browser Notifications**: Uses the Web Notifications API to send native browser notifications
 - **Discord Webhooks**:
   - Server sends HTTP POST requests to a Discord webhook URL when timer events occur
   - Messages appear in the configured Discord channel instantly
