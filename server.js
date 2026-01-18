@@ -29,11 +29,23 @@ let timerState = {
 
 let timerInterval = null;
 
+// Rate limiting for Discord notifications
+let lastDiscordNotificationTime = 0;
+const DISCORD_RATE_LIMIT_MS = 2000; // Minimum 2 seconds between notifications
+
 // Send Discord webhook notification
 async function sendDiscordNotification(message) {
   if (!DISCORD_WEBHOOK_URL) {
     return;
   }
+
+  // Rate limiting - prevent spam
+  const now = Date.now();
+  if (now - lastDiscordNotificationTime < DISCORD_RATE_LIMIT_MS) {
+    console.log('Discord notification skipped due to rate limiting');
+    return;
+  }
+  lastDiscordNotificationTime = now;
 
   try {
     const response = await fetch(DISCORD_WEBHOOK_URL, {
@@ -49,7 +61,14 @@ async function sendDiscordNotification(message) {
     });
 
     if (!response.ok) {
-      console.error('Failed to send Discord notification:', response.statusText);
+      const errorText = await response.text();
+      console.error(`Failed to send Discord notification (${response.status}):`, errorText);
+
+      if (response.status === 429) {
+        console.error('Discord rate limit hit. Please wait before sending more notifications.');
+      }
+    } else {
+      console.log('Discord notification sent successfully');
     }
   } catch (error) {
     console.error('Error sending Discord notification:', error.message);
