@@ -9,13 +9,13 @@ A simple real-time timer website where anyone can set a timer that all visitors 
 - **Quick presets** - One-click timer presets for 5, 10, 20, and 30 minutes
 - **Start/Stop/Reset controls** - Anyone can control the timer
 - **Browser push notifications** - Get notified in your browser when the timer starts, stops, or completes
-- **Telegram notifications** - Receive timer updates on Telegram, even when you're not on the page
+- **Discord notifications** - Receive timer updates in your Discord server via webhooks
 - **Responsive design** - Works on desktop and mobile devices
 - **Visual feedback** - Clear status indicators and animations
 
 ## Technology Stack
 
-- **Backend**: Node.js, Express, Socket.io, Telegram Bot API
+- **Backend**: Node.js, Express, Socket.io, Discord Webhooks
 - **Frontend**: HTML5, CSS3, JavaScript, Browser Notifications API
 - **Real-time Communication**: WebSocket (Socket.io)
 
@@ -32,19 +32,21 @@ cd projects
 npm install
 ```
 
-3. **(Optional)** Set up Telegram notifications:
+3. **(Optional)** Set up Discord notifications:
    - Copy `.env.example` to `.env`:
      ```bash
      cp .env.example .env
      ```
-   - Create a Telegram bot:
-     - Open Telegram and search for `@BotFather`
-     - Send the command `/newbot`
-     - Follow the instructions to name your bot
-     - Copy the bot token provided by BotFather
-   - Edit `.env` and add your bot token:
+   - Create a Discord webhook:
+     - Open Discord and go to the channel where you want timer notifications
+     - Click the gear icon (⚙️) next to the channel name
+     - Go to **Integrations** → **Webhooks**
+     - Click **New Webhook**
+     - Name it (e.g., "Timer Bot") and optionally customize the avatar
+     - Click **Copy Webhook URL**
+   - Edit `.env` and add your webhook URL:
      ```
-     TELEGRAM_BOT_TOKEN=your_bot_token_here
+     DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/your_webhook_url_here
      ```
 
 4. Start the server:
@@ -74,13 +76,12 @@ http://localhost:3000
 3. You'll receive notifications when the timer starts, stops, or completes
 4. Notifications work even when the tab is in the background
 
-### Telegram Notifications
+### Discord Notifications
 
-1. Find the bot username displayed on the page (e.g., `@YourTimerBot`)
-2. Open Telegram and search for that bot
-3. Send `/start` to the bot to subscribe
-4. You'll receive messages on Telegram for all timer events
-5. Send `/stop` to the bot to unsubscribe
+1. Have a server admin follow the setup instructions above to configure the Discord webhook
+2. Once configured, timer events will automatically be posted to your Discord channel
+3. All members of the channel can see timer updates
+4. No individual subscription needed - it's server-wide!
 
 ## How It Works
 
@@ -93,17 +94,18 @@ http://localhost:3000
 
 ### Notifications
 - **Browser Notifications**: Uses the Web Notifications API to send native browser notifications
-- **Telegram Bot**:
-  - Server runs a Telegram bot that listens for `/start` and `/stop` commands
-  - Subscribed users are stored in memory (reset on server restart)
-  - When timer events occur, the server sends messages to all subscribed Telegram users
-  - Telegram notifications work even when the website is closed
+- **Discord Webhooks**:
+  - Server sends HTTP POST requests to a Discord webhook URL when timer events occur
+  - Messages appear in the configured Discord channel instantly
+  - No bot hosting or complex setup required - just a webhook URL
+  - Discord notifications work even when the website is closed
+  - All channel members see the updates automatically
 
 ## Project Structure
 
 ```
 .
-├── server.js           # Express server, Socket.io, and Telegram bot
+├── server.js           # Express server, Socket.io, and Discord webhooks
 ├── package.json        # Dependencies and scripts
 ├── .env.example        # Environment variables template
 ├── .env               # Environment variables (not in git)

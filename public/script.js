@@ -257,23 +257,26 @@ socket.on('timerComplete', () => {
 // Initialize notification button state
 updateNotificationButtonState();
 
-// ========== Telegram Bot Info ==========
+// ========== Discord Webhook Status ==========
 
-const botUsernameElement = document.getElementById('botUsername');
+const discordStatusElement = document.getElementById('discordStatus');
 
-// Fetch bot info from server
-fetch('/api/bot-info')
+// Check Discord webhook configuration status
+fetch('/api/discord-status')
     .then(response => response.json())
     .then(data => {
-        if (data.available && data.username) {
-            botUsernameElement.textContent = `@${data.username}`;
+        if (data.configured) {
+            discordStatusElement.textContent = 'Configured ✓';
+            discordStatusElement.classList.add('configured');
+            discordStatusElement.classList.remove('not-configured');
         } else {
-            botUsernameElement.textContent = 'Bot not configured';
-            botUsernameElement.style.color = '#999';
+            discordStatusElement.textContent = 'Not configured';
+            discordStatusElement.classList.add('not-configured');
+            discordStatusElement.classList.remove('configured');
         }
     })
     .catch(error => {
-        console.error('Error fetching bot info:', error);
-        botUsernameElement.textContent = 'Error loading bot info';
-        botUsernameElement.style.color = '#e74c3c';
+        console.error('Error fetching Discord status:', error);
+        discordStatusElement.textContent = 'Error checking status';
+        discordStatusElement.classList.add('not-configured');
     });

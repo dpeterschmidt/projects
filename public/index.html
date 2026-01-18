@@ -58,17 +58,25 @@
 
             <div class="notification-option">
                 <div class="notification-header">
-                    <span class="notification-icon">📱</span>
-                    <h3>Telegram Notifications</h3>
+                    <span class="notification-icon">💬</span>
+                    <h3>Discord Notifications</h3>
                 </div>
-                <p class="notification-description">Receive updates on Telegram, even when you're not on this page.</p>
-                <div class="telegram-instructions">
+                <p class="notification-description">Receive timer updates in your Discord server.</p>
+                <div class="discord-instructions">
+                    <p><strong>Setup Instructions:</strong></p>
                     <ol>
-                        <li>Open Telegram and search for: <strong id="botUsername">Loading...</strong></li>
-                        <li>Send the command: <code>/start</code></li>
-                        <li>You'll receive timer notifications automatically!</li>
+                        <li>Open Discord and go to the channel where you want notifications</li>
+                        <li>Click the gear icon next to the channel name → <strong>Integrations</strong></li>
+                        <li>Click <strong>Create Webhook</strong> or <strong>View Webhooks</strong></li>
+                        <li>Click <strong>New Webhook</strong>, name it (e.g., "Timer Bot")</li>
+                        <li>Click <strong>Copy Webhook URL</strong></li>
+                        <li>Add the webhook URL to your server's <code>.env</code> file as <code>DISCORD_WEBHOOK_URL</code></li>
+                        <li>Restart the server</li>
                     </ol>
-                    <p class="telegram-note">To unsubscribe, send <code>/stop</code> to the bot.</p>
+                    <p class="discord-status">
+                        Status: <span id="discordStatus">Checking...</span>
+                    </p>
+                    <p class="discord-note">The server admin needs to configure the webhook. Once set up, all timer events will be posted to your Discord channel.</p>
                 </div>
             </div>
         </div>

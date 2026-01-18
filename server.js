@@ -3,7 +3,6 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
-const TelegramBot = require('node-telegram-bot-api');
 
 const app = express();
 const server = http.createServer(app);
@@ -11,40 +10,13 @@ const io = socketIO(server);
 
 const PORT = process.env.PORT || 3000;
 
-// Initialize Telegram Bot if token is provided
-let telegramBot = null;
-const telegramSubscribers = new Set(); // Store chat IDs of subscribed users
+// Discord webhook configuration
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
-if (process.env.TELEGRAM_BOT_TOKEN) {
-  telegramBot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-
-  // Handle /start command
-  telegramBot.onText(/\/start/, (msg) => {
-    const chatId = msg.chat.id;
-    telegramSubscribers.add(chatId);
-    telegramBot.sendMessage(chatId,
-      '🎉 Welcome to Shared Live Timer!\n\n' +
-      'You are now subscribed to timer notifications. You will receive updates when:\n' +
-      '• Timer starts\n' +
-      '• Timer stops\n' +
-      '• Timer completes\n\n' +
-      `Your Chat ID: ${chatId}\n\n` +
-      'Send /stop to unsubscribe.'
-    );
-    console.log(`Telegram user ${chatId} subscribed`);
-  });
-
-  // Handle /stop command
-  telegramBot.onText(/\/stop/, (msg) => {
-    const chatId = msg.chat.id;
-    telegramSubscribers.delete(chatId);
-    telegramBot.sendMessage(chatId, '👋 You have been unsubscribed from timer notifications.');
-    console.log(`Telegram user ${chatId} unsubscribed`);
-  });
-
-  console.log('Telegram bot initialized successfully');
+if (DISCORD_WEBHOOK_URL) {
+  console.log('Discord webhook configured successfully');
 } else {
-  console.log('Telegram bot token not provided. Telegram notifications disabled.');
+  console.log('Discord webhook URL not provided. Discord notifications disabled.');
 }
 
 // Timer state
@@ -57,18 +29,30 @@ let timerState = {
 
 let timerInterval = null;
 
-// Send Telegram notifications to all subscribers
-function sendTelegramNotification(message) {
-  if (telegramBot && telegramSubscribers.size > 0) {
-    telegramSubscribers.forEach(chatId => {
-      telegramBot.sendMessage(chatId, message).catch(err => {
-        console.error(`Failed to send message to ${chatId}:`, err.message);
-        // Remove invalid chat IDs
-        if (err.response && err.response.statusCode === 403) {
-          telegramSubscribers.delete(chatId);
-        }
-      });
+// Send Discord webhook notification
+async function sendDiscordNotification(message) {
+  if (!DISCORD_WEBHOOK_URL) {
+    return;
+  }
+
+  try {
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: message,
+        username: 'Shared Live Timer',
+        avatar_url: 'https://cdn-icons-png.flaticon.com/512/2784/2784459.png'
+      })
     });
+
+    if (!response.ok) {
+      console.error('Failed to send Discord notification:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error sending Discord notification:', error.message);
   }
 }
 
@@ -80,22 +64,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// API endpoint to get bot info
-app.get('/api/bot-info', (req, res) => {
-  if (telegramBot) {
-    telegramBot.getMe().then(botInfo => {
-      res.json({
-        available: true,
-        username: botInfo.username,
-        name: botInfo.first_name
-      });
-    }).catch(err => {
-      console.error('Error getting bot info:', err);
-      res.json({ available: false });
-    });
-  } else {
-    res.json({ available: false });
-  }
+// API endpoint to check if Discord webhook is configured
+app.get('/api/discord-status', (req, res) => {
+  res.json({
+    configured: !!DISCORD_WEBHOOK_URL
+  });
 });
 
 // Socket.io connection
@@ -117,7 +90,7 @@ io.on('connection', (socket) => {
       // Broadcast to all clients
       io.emit('timerUpdate', getCurrentTimerState());
 
-      // Send Telegram notification
+      // Send Discord notification
       const minutes = Math.floor(duration / 60);
       const seconds = duration % 60;
       let timeStr = '';
@@ -127,7 +100,7 @@ io.on('connection', (socket) => {
       } else {
         timeStr = `${seconds} second${seconds !== 1 ? 's' : ''}`;
       }
-      sendTelegramNotification(`⏱️ Timer started for ${timeStr}`);
+      sendDiscordNotification(`⏱️ Timer started for ${timeStr}`);
 
       // Clear existing interval if any
       if (timerInterval) {
@@ -139,7 +112,7 @@ io.on('connection', (socket) => {
         if (Date.now() >= timerState.endTime) {
           stopTimer();
           io.emit('timerComplete');
-          sendTelegramNotification('✅ Timer completed!');
+          sendDiscordNotification('✅ Timer completed!');
         }
       }, 100);
 
@@ -152,7 +125,7 @@ io.on('connection', (socket) => {
     if (timerState.isRunning) {
       stopTimer();
       io.emit('timerUpdate', getCurrentTimerState());
-      sendTelegramNotification('⏸️ Timer stopped');
+      sendDiscordNotification('⏸️ Timer stopped');
       console.log('Timer stopped');
     }
   });

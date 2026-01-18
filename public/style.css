@@ -306,32 +306,36 @@ h1 {
     font-weight: 500;
 }
 
-.telegram-instructions {
-    background: #f0f7ff;
+.discord-instructions {
+    background: #f0f3ff;
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid #5865F2;
 }
 
-.telegram-instructions ol {
+.discord-instructions p {
+    margin: 10px 0;
+}
+
+.discord-instructions ol {
     margin: 10px 0;
     padding-left: 20px;
 }
 
-.telegram-instructions li {
+.discord-instructions li {
     color: #555;
     font-size: 0.95rem;
     margin: 8px 0;
     line-height: 1.6;
 }
 
-.telegram-instructions strong {
+.discord-instructions strong {
     color: #333;
     font-weight: 600;
 }
 
-.telegram-instructions code {
-    background: #e8f4f8;
+.discord-instructions code {
+    background: #e8ecf8;
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
@@ -339,7 +343,28 @@ h1 {
     font-size: 0.9rem;
 }
 
-.telegram-note {
+.discord-status {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.discord-status #discordStatus {
+    font-weight: 600;
+}
+
+.discord-status #discordStatus.configured {
+    color: #2ecc71;
+}
+
+.discord-status #discordStatus.not-configured {
+    color: #e74c3c;
+}
+
+.discord-note {
     margin-top: 10px;
     font-size: 0.85rem;
     color: #777;
