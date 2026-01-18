@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.timer-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+}
+
+.time {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #95a5a6;
+    animation: pulse 2s infinite;
+}
+
+.status.running .status-indicator {
+    background: #2ecc71;
+}
+
+.status.stopped .status-indicator {
+    background: #e74c3c;
+}
+
+.status-text {
+    color: #555;
+    font-weight: 500;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.controls {
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.presets {
+    margin-bottom: 20px;
+}
+
+.presets label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.preset-btn {
+    padding: 10px 12px;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.preset-btn:hover:not(:disabled) {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.preset-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.btn-tertiary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-tertiary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+}
+
+.notifications-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.notifications-section h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notification-option {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.notification-option:last-child {
+    margin-bottom: 0;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+.notification-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.notification-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.btn-notification {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.btn-notification:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn-notification:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+.notification-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.notification-status.success {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.notification-status.error {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.discord-instructions {
+    background: #f0f3ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #5865F2;
+}
+
+.discord-instructions p {
+    margin: 10px 0;
+}
+
+.discord-instructions ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.discord-instructions li {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.discord-instructions strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.discord-instructions code {
+    background: #e8ecf8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.discord-status {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.discord-status #discordStatus {
+    font-weight: 600;
+}
+
+.discord-status #discordStatus.configured {
+    color: #2ecc71;
+}
+
+.discord-status #discordStatus.not-configured {
+    color: #e74c3c;
+}
+
+.discord-note {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
+}
+
+.info {
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.info p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .time {
+        font-size: 2.5rem;
+    }
+
+    .preset-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
