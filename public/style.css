@@ -266,46 +266,6 @@ h1 {
     line-height: 1.5;
 }
 
-.btn-notification {
-    background: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-}
-
-.btn-notification:hover:not(:disabled) {
-    background: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-}
-
-.btn-notification:disabled {
-    background: #95a5a6;
-    cursor: not-allowed;
-}
-
-.notification-status {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.notification-status.success {
-    color: #2ecc71;
-    font-weight: 500;
-}
-
-.notification-status.error {
-    color: #e74c3c;
-    font-weight: 500;
-}
-
 .discord-instructions {
     background: #f0f3ff;
     padding: 15px;
