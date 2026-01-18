@@ -52,6 +52,7 @@ async function sendDiscordNotification(message) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'User-Agent': 'SharedLiveTimer/1.0 (Node.js; +https://github.com/yourrepo)',
       },
       body: JSON.stringify({
         content: message,
@@ -62,10 +63,12 @@ async function sendDiscordNotification(message) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`Failed to send Discord notification (${response.status}):`, errorText);
+      console.error(`Failed to send Discord notification (${response.status}):`, errorText.substring(0, 200));
 
       if (response.status === 429) {
         console.error('Discord rate limit hit. Please wait before sending more notifications.');
+      } else if (response.status === 403 || response.status === 1015) {
+        console.error('Cloudflare blocked the request. The server IP may be temporarily banned. Wait 5-10 minutes.');
       }
     } else {
       console.log('Discord notification sent successfully');
