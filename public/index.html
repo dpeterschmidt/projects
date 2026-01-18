@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shared Live Timer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Shared Live Timer</h1>
-        <p class="subtitle">One timer for Liv</p>
+        <p class="subtitle">One timer for everyone</p>
 
         <div class="timer-display" id="timerDisplay">
             <span class="time">00:00:00</span>
@@ -32,10 +29,10 @@
             <div class="presets">
                 <label>Quick Presets:</label>
                 <div class="preset-buttons">
-                    <button class="preset-btn" data-seconds="300">5</button>
-                    <button class="preset-btn" data-seconds="600">10</button>
-                    <button class="preset-btn" data-seconds="1200">20</button>
-                    <button class="preset-btn" data-seconds="1800">30</button>
+                    <button class="preset-btn" data-seconds="300">5 min</button>
+                    <button class="preset-btn" data-seconds="600">10 min</button>
+                    <button class="preset-btn" data-seconds="1200">20 min</button>
+                    <button class="preset-btn" data-seconds="1800">30 min</button>
                 </div>
             </div>
 
@@ -43,6 +40,33 @@
                 <button id="startBtn" class="btn btn-primary">Start Timer</button>
                 <button id="stopBtn" class="btn btn-secondary" disabled>Stop Timer</button>
                 <button id="resetBtn" class="btn btn-tertiary">Reset</button>
+            </div>
+        </div>
+
+        <div class="notifications-section">
+            <h2>Discord Notifications</h2>
+
+            <div class="notification-option">
+                <div class="notification-header">
+                    <span class="notification-icon">💬</span>
+                    <h3>Setup Instructions</h3>
+                </div>
+                <p class="notification-description">Receive timer updates in your Discord server.</p>
+                <div class="discord-instructions">
+                    <ol>
+                        <li>Open Discord and go to the channel where you want notifications</li>
+                        <li>Click the gear icon next to the channel name → <strong>Integrations</strong></li>
+                        <li>Click <strong>Create Webhook</strong> or <strong>View Webhooks</strong></li>
+                        <li>Click <strong>New Webhook</strong>, name it (e.g., "Timer Bot")</li>
+                        <li>Click <strong>Copy Webhook URL</strong></li>
+                        <li>Add the webhook URL to your server's <code>.env</code> file as <code>DISCORD_WEBHOOK_URL</code></li>
+                        <li>Restart the server</li>
+                    </ol>
+                    <p class="discord-status">
+                        Status: <span id="discordStatus">Checking...</span>
+                    </p>
+                    <p class="discord-note">The server admin needs to configure the webhook. Once set up, all timer events will be posted to your Discord channel.</p>
+                </div>
             </div>
         </div>
 
