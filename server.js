@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // Discord webhook configuration
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+const TIMER_SITE_URL = 'https://projects-production-cf2d.up.railway.app';
 
 if (DISCORD_WEBHOOK_URL) {
   console.log('Discord webhook configured successfully');
@@ -122,7 +123,7 @@ io.on('connection', (socket) => {
       } else {
         timeStr = `${seconds} second${seconds !== 1 ? 's' : ''}`;
       }
-      sendDiscordNotification(`⏱️ Timer started for ${timeStr}`);
+      sendDiscordNotification(`⏱️ Timer started for ${timeStr}\n👉 View timer: ${TIMER_SITE_URL}`);
 
       // Clear existing interval if any
       if (timerInterval) {
@@ -134,7 +135,7 @@ io.on('connection', (socket) => {
         if (Date.now() >= timerState.endTime) {
           stopTimer();
           io.emit('timerComplete');
-          sendDiscordNotification('✅ Timer completed!');
+          sendDiscordNotification(`✅ Timer completed!\n👉 Start another: ${TIMER_SITE_URL}`);
         }
       }, 100);
 
@@ -147,7 +148,7 @@ io.on('connection', (socket) => {
     if (timerState.isRunning) {
       stopTimer();
       io.emit('timerUpdate', getCurrentTimerState());
-      sendDiscordNotification('⏸️ Timer stopped');
+      sendDiscordNotification(`⏸️ Timer stopped\n👉 View timer: ${TIMER_SITE_URL}`);
       console.log('Timer stopped');
     }
   });
