@@ -1,0 +1,27 @@
+/* Main App Styles */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  background: #ff6b6b;
+  color: white;
+}
+
+::-moz-selection {
+  background: #ff6b6b;
+  color: white;
+}

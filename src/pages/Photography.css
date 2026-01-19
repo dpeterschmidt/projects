@@ -1,0 +1,141 @@
+/* Photography-specific styles */
+
+.photo-category-section {
+  margin-bottom: 5rem;
+}
+
+.category-title {
+  color: #2a5470;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #ff6b6b;
+  display: inline-block;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.gallery-item {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-item .placeholder-photo {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-item:hover .placeholder-photo {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.photo-info h4 {
+  color: #2a5470;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.photo-info p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.photography-approach {
+  margin: 5rem 0;
+  padding: 4rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border-radius: 20px;
+}
+
+.photography-approach h2 {
+  color: #2a5470;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.philosophy-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.philosophy-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+}
+
+.equipment-section {
+  margin-top: 3rem;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 16px;
+}
+
+.equipment-section h3 {
+  color: #2a5470;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.equipment-item {
+  text-align: center;
+}
+
+.equipment-item h4 {
+  color: #2a5470;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.equipment-item p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .photo-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .photography-approach {
+    padding: 2rem 1.5rem;
+  }
+
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+}
